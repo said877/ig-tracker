@@ -99,5 +99,10 @@ def index():
         results = asyncio.run(scan_reels_async(username, password, target))
     return render_template_string(HTML_FORM, results=results)
 
+import os
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
+
+
