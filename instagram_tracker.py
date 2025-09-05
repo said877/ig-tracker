@@ -2,6 +2,7 @@ from flask import Flask, render_template_string, request
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
 import time
 import os
 
@@ -31,7 +32,13 @@ HTML_FORM = """
 """
 
 def scan_reels(username, password, target):
-    driver = webdriver.Chrome()
+    # ✅ Headless Chrome options for Railway
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    driver = webdriver.Chrome(options=options)
+
     driver.get("https://www.instagram.com/")
     time.sleep(2)
 
