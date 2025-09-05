@@ -101,7 +101,11 @@ def index():
     return render_template_string(HTML_FORM, results=results)
 
 
-# ✅ FIXED FOR RAILWAY
+import os
+
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", "5000"))
+    print(f"✅ Flask starting on port {port}")
     app.run(host="0.0.0.0", port=port, debug=False)
+
+
